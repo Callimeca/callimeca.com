@@ -1,62 +1,342 @@
 <!DOCTYPE html>
+<!--
+  ============================================================================
+  SITIO: OHMIA — Consultoría y formación en gestión de riesgos
+  ============================================================================
+  Cómo está organizado (mismo orden que estilos.css, por sección numerada):
+    4. Header / navegación
+    5. Hero + matriz de riesgo
+    6. Franja de insignias ISO
+    7a. Experiencia en el sector energético
+    7b. Cursos y servicios actuales
+    7c. Cursos planeados (roadmap)
+    7d. Sobre mí
+    8. Contacto + footer
+
+  REGLA GENERAL PARA EDITAR TEXTO:
+  Todo el copy real (nombres de cursos, descripciones, cifras) está escrito
+  directamente en este HTML — no hay CMS ni base de datos. Para cambiar
+  cualquier texto, busca la palabra en VS Code (Ctrl/Cmd+F) y edítala aquí.
+
+  REGLA GENERAL PARA EDITAR ESTILOS:
+  Casi ningún color o tamaño está "hardcodeado" en este archivo: todo viene
+  de las variables (custom properties) definidas al inicio de estilos.css,
+  sección 2 "TOKENS DE MARCA". Cambia ahí y se actualiza en todo el sitio.
+  ============================================================================
+-->
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CALLIMECA — Profesional</title>
+  <title>OHMIA — Gestión de Riesgos para el Sector Energético</title>
+  <meta name="description" content="Cursos, auditorías y consultoría en gestión de riesgos (ERM, ISO 9001/14001/27001/45001/50001/55001) con experiencia real en el sector energético.">
   <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
+
+  <!-- ==================== 4. HEADER / NAVEGACIÓN ==================== -->
   <header>
-    <nav>
-      <div class="logo">CALLIMECA</div>
+    <nav class="contenedor">
+      <!-- LOGO / FIRMA: Montserrat peso medio, definido en estilos.css (.logo).
+           No cambies la fuente aquí; si necesitas ajustar tamaño o color,
+           hazlo en la sección 4 de estilos.css para que quede consistente
+           con el footer, que reutiliza esta misma clase. -->
+      <a href="#inicio" class="logo" style="text-decoration:none;">OHM<span>IA</span></a>
+
+      <!-- Checkbox oculto = truco CSS para el menú móvil, sin JavaScript.
+           No lo borres aunque no lo "veas": es el interruptor del menú. -->
+      <input type="checkbox" id="menu-toggle" class="menu-toggle">
+      <label for="menu-toggle" class="menu-toggle-label">&#9776;</label>
+
       <ul>
         <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#experiencia">Experiencia</a></li>
+        <li><a href="#cursos">Cursos</a></li>
+        <li><a href="#planeados">Cursos planeados</a></li>
+        <li><a href="#sobre-mi">Sobre mí</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
   </header>
 
+  <!-- ==================== 5. HERO + MATRIZ DE RIESGO ==================== -->
   <section id="inicio" class="hero">
-    <h1>Bienvenido a CALLIMECA</h1>
-    <p>Soluciones profesionales para tu negocio</p>
-    <a href="#contacto" class="btn">Contáctanos</a>
-  </section>
+    <div class="contenedor">
+      <div class="hero-texto">
+        <span class="etiqueta">Consultoría &amp; formación en riesgo empresarial</span>
+        <h1>Gestión de riesgo con la precisión que exige el sector energético</h1>
+        <p>
+          Cursos, auditorías y consultoría construidos desde experiencia real en
+          generación, distribución, desarrollo, construcción y mantenimiento —
+          alineados a ISO 9001, 14001, 27001, 45001, 50001 y 55001.
+        </p>
+        <div class="hero-cta">
+          <a href="#cursos" class="btn btn-primario">Ver cursos y servicios</a>
+          <a href="#contacto" class="btn btn-secundario">Agendar una consultoría</a>
+        </div>
+      </div>
 
-  <section id="servicios">
-    <h2>Nuestros Servicios</h2>
-    <div class="servicios-grid">
-      <div class="servicio">
-        <h3>Consultoría</h3>
-        <p>Asesoramiento experto para tu empresa.</p>
-      </div>
-      <div class="servicio">
-        <h3>Talleres Metodología de Riesgos</h3>
-        <p>ERM Enterprise Risk Management, COSO, ISO.</p>
-      </div>
-      <div class="servicio">
-        <h3>Soporte Técnico</h3>
-        <p>Asistencia cuando la necesites.</p>
+      <!-- Elemento firma del diseño: ver assets/matriz-riesgo.svg para editar
+           la matriz en sí (colores, celdas, marcador). -->
+      <div class="hero-grafico">
+        <img src="assets/matriz-riesgo.svg" alt="Matriz de riesgo: probabilidad frente a impacto, con niveles de bajo a crítico">
+        <p class="hero-grafico-caption">Matriz de riesgo · Probabilidad × Impacto</p>
       </div>
     </div>
   </section>
 
-  <section id="nosotros">
-    <h2>Sobre Nosotros</h2>
-    <p>Somos un equipo apasionado por la tecnología, comprometidos con ofrecer resultados que superen expectativas.</p>
+  <!-- ==================== 6. FRANJA DE INSIGNIAS ISO ====================
+       Insignias en assets/iso-XXXXX.svg. Para agregar una norma nueva:
+       1) genera un SVG con el mismo estilo (círculo + número, currentColor)
+       2) copia uno de los <li class="iso-badge-item"> de abajo y cambia
+          la ruta de la imagen, el alt y el nombre visible. -->
+  <div class="franja-iso">
+    <div class="contenedor">
+      <p class="franja-iso-intro">Auditorías y cursos alineados a</p>
+      <ul class="iso-badges" style="list-style:none; display:flex; gap:2rem; flex-wrap:wrap;">
+        <li class="iso-badge-item">
+          <span class="iso-badge"><img src="assets/iso-9001.svg" alt="ISO 9001"></span>
+          <span class="iso-badge-nombre">Calidad</span>
+        </li>
+        <li class="iso-badge-item">
+          <span class="iso-badge"><img src="assets/iso-14001.svg" alt="ISO 14001"></span>
+          <span class="iso-badge-nombre">Ambiental</span>
+        </li>
+        <li class="iso-badge-item">
+          <span class="iso-badge"><img src="assets/iso-45001.svg" alt="ISO 45001"></span>
+          <span class="iso-badge-nombre">Seg. y salud</span>
+        </li>
+        <li class="iso-badge-item">
+          <span class="iso-badge"><img src="assets/iso-27001.svg" alt="ISO 27001"></span>
+          <span class="iso-badge-nombre">Información</span>
+        </li>
+        <li class="iso-badge-item">
+          <span class="iso-badge"><img src="assets/iso-50001.svg" alt="ISO 50001"></span>
+          <span class="iso-badge-nombre">Energía</span>
+        </li>
+        <li class="iso-badge-item">
+          <span class="iso-badge"><img src="assets/iso-55001.svg" alt="ISO 55001"></span>
+          <span class="iso-badge-nombre">Activos</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ==================== 7a. EXPERIENCIA SECTOR ENERGÉTICO ====================
+       Cada .experiencia-item = un ícono SVG en línea + título + descripción.
+       Los íconos están escritos directo aquí (no como archivos aparte) porque
+       son pequeños y cambian poco; si prefieres archivos separados, muévelos
+       a assets/ como se hizo con las insignias ISO. -->
+  <section id="experiencia">
+    <div class="contenedor">
+      <span class="etiqueta">Trayectoria</span>
+      <h2>Experiencia en el sector energético</h2>
+      <p class="intro-seccion">
+        El contenido de cada curso y auditoría parte de trabajo real en la
+        cadena de valor energética, no de teoría genérica de riesgo.
+      </p>
+
+      <div class="experiencia-grid">
+
+        <div class="experiencia-item">
+          <svg class="experiencia-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+          <div><h3>Generación</h3><p>Riesgo operacional en plantas de generación eléctrica.</p></div>
+        </div>
+
+        <div class="experiencia-item">
+          <svg class="experiencia-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 21V9m7 12V3m7 18v-6M3 9l2-6h2l2 6M10 3h2v6h6l2 6"/></svg>
+          <div><h3>Distribución</h3><p>Continuidad y control de riesgo en redes de distribución.</p></div>
+        </div>
+
+        <div class="experiencia-item">
+          <svg class="experiencia-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          <div><h3>Desarrollo de proyectos</h3><p>Identificación de riesgo desde la etapa de factibilidad.</p></div>
+        </div>
+
+        <div class="experiencia-item">
+          <svg class="experiencia-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 21h20M6 21V10l6-4 6 4v11M10 21v-6h4v6"/></svg>
+          <div><h3>Construcción</h3><p>Control de riesgo en obra: seguridad, plazos y cumplimiento.</p></div>
+        </div>
+
+        <div class="experiencia-item">
+          <svg class="experiencia-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2 2.5-2.5z"/></svg>
+          <div><h3>Mantenimiento</h3><p>Riesgo de falla de activos y planes de mantenimiento.</p></div>
+        </div>
+
+        <div class="experiencia-item">
+          <svg class="experiencia-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2c2 3 4 5.5 4 9a4 4 0 0 1-8 0c0-1.2.5-2.2 1-3"/></svg>
+          <div><h3>Gas natural</h3><p>Riesgo técnico y regulatorio en operaciones de gas natural.</p></div>
+        </div>
+
+        <div class="experiencia-item acento-esg">
+          <svg class="experiencia-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s8-4.5 8-11a8 8 0 0 0-16 0c0 6.5 8 11 8 11z"/><path d="M12 15v-4M9 9l3 2 3-2"/></svg>
+          <div><h3>ESG</h3><p>Integración de riesgo ambiental, social y de gobernanza.</p></div>
+        </div>
+
+        <div class="experiencia-item">
+          <svg class="experiencia-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m3 8 9-5 9 5-9 5-9-5zm0 8 9 5 9-5M3 12l9 5 9-5"/></svg>
+          <div><h3>Áreas transversales</h3><p>Back, middle y front office, control interno y reporting multi-GBU.</p></div>
+        </div>
+
+      </div>
+    </div>
   </section>
 
+  <!-- ==================== 7b. CURSOS Y SERVICIOS ACTUALES ==================== -->
+  <section id="cursos" style="background: var(--color-papel-alt);">
+    <div class="contenedor">
+      <span class="etiqueta">Formación y consultoría</span>
+      <h2>Cursos y servicios</h2>
+      <p class="intro-seccion">
+        Cuatro formatos pensados para necesidades distintas: desde un
+        programa completo de riesgo empresarial hasta un diagnóstico
+        exprés cuando el tiempo apremia.
+      </p>
+
+      <div class="servicios-grid">
+        <div class="servicio">
+          <h3>Programa ERM — Gestión Integral de Riesgo</h3>
+          <p>Programa de 11 módulos basado en COSO 2017, con integración de
+             riesgo ESG, pensado para escalar de piso operativo a comité
+             ejecutivo.</p>
+          <span class="servicio-tag">Programa insignia</span>
+        </div>
+
+        <div class="servicio">
+          <h3>Curso NOM-017-STPS-2024</h3>
+          <p>Equipo de protección personal: identificación de riesgo,
+             selección de EPP y cumplimiento normativo aplicado a
+             operaciones del sector energético.</p>
+          <span class="servicio-tag">Curso normativo</span>
+        </div>
+
+        <div class="servicio">
+          <h3>Auditorías de riesgo bajo normas ISO</h3>
+          <p>Auditoría y preparación para ISO 9001, 14001, 45001, 27001,
+             50001 y 55001, con enfoque en hallazgos accionables, no solo
+             cumplimiento documental.</p>
+          <span class="servicio-tag">Auditoría</span>
+        </div>
+
+        <div class="servicio">
+          <h3>Consultoría express en cumplimiento</h3>
+          <p>Diagnóstico acelerado de brechas de control interno y riesgo
+             operacional, entregable en días, no meses.</p>
+          <span class="servicio-tag">Consultoría</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 7c. CURSOS PLANEADOS (ROADMAP) ====================
+       Esta es la única sección donde el orden numerado/cronológico tiene
+       sentido real (son fechas), así que se usa una línea de tiempo.
+       Para agregar un curso nuevo: copia un .roadmap-item completo. -->
+  <section id="planeados">
+    <div class="contenedor">
+      <span class="etiqueta">En desarrollo</span>
+      <h2>Cursos planeados</h2>
+      <p class="intro-seccion">
+        La oferta sigue creciendo. Estos son los próximos programas en
+        construcción, con su estado actual.
+      </p>
+
+      <div class="roadmap">
+        <div class="roadmap-item">
+          <span class="roadmap-fecha">3er trimestre 2026</span>
+          <h3>Riesgo operacional en banca (Basilea II/III &amp; CNBV Serie R28)</h3>
+          <p>Adaptación del marco de riesgo operacional del sector energético
+             a banca de desarrollo, incluyendo gobierno UAIR.</p>
+          <span class="roadmap-estado">En diseño</span>
+        </div>
+
+        <div class="roadmap-item">
+          <span class="roadmap-fecha">4º trimestre 2026</span>
+          <h3>ISO 27001 avanzado — ciberseguridad OT/IT en energía</h3>
+          <p>Módulo especializado en seguridad de la información para
+             entornos de tecnología operativa (OT) en generación y
+             distribución.</p>
+          <span class="roadmap-estado">Investigación</span>
+        </div>
+
+        <div class="roadmap-item">
+          <span class="roadmap-fecha">1er trimestre 2027</span>
+          <h3>ESG avanzado y reporting multi-GBU</h3>
+          <p>Consolidación de reporte de riesgo ESG entre múltiples unidades
+             de negocio, con casos aplicados del sector energético.</p>
+          <span class="roadmap-estado">Planeado</span>
+        </div>
+
+        <div class="roadmap-item">
+          <span class="roadmap-fecha">Continuo</span>
+          <h3>Talleres por nivel: operativo, gerencial y ejecutivo</h3>
+          <p>Formato corto y diferenciado por audiencia, con piloto de
+             implementación en Moodle.</p>
+          <span class="roadmap-estado">Piloto</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 7d. SOBRE MÍ ==================== -->
+  <section id="sobre-mi" class="sobre-mi">
+    <div class="contenedor">
+      <div>
+        <span class="etiqueta">Sobre mí</span>
+        <h2 style="margin-bottom:1rem;">Risk Officer con trayectoria en el sector energético</h2>
+        <p style="color:var(--color-grafito); max-width:56ch;">
+          Actualmente en formación continua en cumplimiento y control
+          (Procadist), con experiencia en back office, middle office y front
+          office dentro de riesgo, incluyendo control interno y reporting
+          multi-GBU. Cada curso y auditoría que ofrezco parte de esa
+          experiencia operativa real, no solo de marco teórico.
+        </p>
+      </div>
+      <div class="sobre-mi-cifras">
+        <div class="cifra"><strong>3</strong><span>Funciones cubiertas: back, middle y front office</span></div>
+        <div class="cifra"><strong>6</strong><span>Normas ISO trabajadas en auditoría de riesgo</span></div>
+        <div class="cifra"><strong>11</strong><span>Módulos del programa ERM insignia</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 8. CONTACTO ====================
+       IMPORTANTE — datos de ejemplo:
+       Reemplaza el email/teléfono de abajo por los reales antes de publicar.
+       El <form> apunta a un servicio de ejemplo (Formspree); ver la nota
+       larga en estilos.css sección 8 para activarlo con tu propio ID. -->
   <section id="contacto">
-    <h2>Contacto</h2>
-    <p>Email: contacto@callimeca.com</p>
-    <p>Whatsapp: MX +52 55 4072 1747</p>
-    <p>Whatsapp: CL +569 5742 0593</p>
-      </section>
+    <div class="contenedor">
+      <span class="etiqueta">Contacto</span>
+      <h2>Conversemos sobre tu próximo curso o auditoría</h2>
+
+      <div class="contacto-grid" style="margin-top:2rem;">
+        <div class="contacto-datos">
+          <p><strong>Email</strong>contacto@ohmia.cl</p>
+          <p><strong>Teléfono</strong>+56 9 0000 0000</p>
+          <p><strong>Modalidad</strong>Remoto, con cobertura para equipos en Chile y México</p>
+        </div>
+
+        <form class="formulario" action="https://formspree.io/f/TU-ID-DE-FORMSPREE" method="POST">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" required>
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+
+          <button type="submit" class="btn btn-primario" style="border:none; cursor:pointer;">Enviar mensaje</button>
+        </form>
+      </div>
+    </div>
+  </section>
 
   <footer>
-    <p>&copy; 2026-2030 CALLIMECA. Todos los derechos reservados.</p>
+    <p class="logo">OHM<span>IA</span></p>
+    <p>&copy; 2026 OHMIA — Gestión de Riesgos. Todos los derechos reservados.</p>
   </footer>
+
 </body>
 </html>

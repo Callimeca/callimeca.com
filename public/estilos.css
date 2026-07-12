@@ -1,34 +1,175 @@
+/* ============================================================================
+   ESTILOS.CSS — Página de cursos y consultoría en gestión de riesgos
+   ============================================================================
+   Cómo está organizado este archivo (para que te muevas rápido en VS Code):
+     1. Fuentes y RESET
+     2. TOKENS de marca (variables --color-/--font-/--espacio-) — cambia la
+        marca completa editando SOLO esta sección.
+     3. Estilos base (body, tipografía general)
+     4. Header / navegación
+     5. Hero + matriz de riesgo (elemento firma)
+     6. Franja de insignias ISO
+     7. Secciones: Experiencia, Cursos, Cursos planeados (roadmap), Sobre mí
+     8. Contacto y footer
+     9. Animaciones
+    10. Responsive (mobile)
+   Usa Ctrl/Cmd+F en VS Code y busca el número de sección (ej. "SECCIÓN 5")
+   para saltar directo a lo que quieras tocar.
+   ============================================================================ */
+
+/* -----------------------------------------------------------------------
+   1. FUENTES
+   - Montserrat: la fuente "firma" del sitio. El logo usa peso 500 (medium)
+     tal cual pediste; los títulos usan 600/700 para jerarquía.
+   - Source Serif 4: fuente de texto corrido. Se eligió una serif editorial
+     (no una sans genérica) para que el contenido se lea con la autoridad
+     de un informe/reporte de auditoría, coherente con el rubro.
+   Si algún día quieres cambiarlas, solo edita este @import y las variables
+   --font-display / --font-body de la sección 2.
+----------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  color: #333;
+/* -----------------------------------------------------------------------
+   2. TOKENS DE MARCA
+   Toda la identidad visual vive aquí. Si quieres probar otra paleta,
+   cambia solo estos valores hexadecimales: el resto del archivo los
+   referencia con var(--nombre), así que se propaga automáticamente.
+----------------------------------------------------------------------- */
+:root {
+  /* Color — inspirada en el mundo energético: tablero eléctrico (tinta),
+     cobre de un conductor (acento cálido) y acero de una torre de
+     transmisión (acento frío). Evita el naranja/terracota genérico. */
+  --color-tinta: #0B2436;        /* Azul-noche profundo: header, textos fuertes */
+  --color-tinta-suave: #16384F;  /* Variante para degradados/hover sobre tinta */
+  --color-papel: #F5F6F2;        /* Fondo general, cálido pero no crema-cliché */
+  --color-papel-alt: #ECEBE3;    /* Fondo de bloques alternos */
+  --color-cobre: #B8763A;        /* Acento cálido: CTAs, subrayados, énfasis */
+  --color-cobre-suave: #E4C9A6;  /* Acento cobre claro, para fondos sutiles */
+  --color-acero: #3D6E8C;        /* Acento frío: enlaces, íconos secundarios */
+  --color-salvia: #5C7A63;       /* Verde apagado: usado solo para bloque ESG */
+  --color-grafito: #44505A;      /* Texto secundario / bordes */
+  --color-rojizo-alto: #8B3A2B;  /* Nivel "alto" en la matriz de riesgo */
+
+  /* Tipografía */
+  --font-display: 'Montserrat', 'Segoe UI', sans-serif;
+  --font-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+
+  /* Espaciado — escala consistente en vez de valores sueltos */
+  --espacio-xs: 0.5rem;
+  --espacio-sm: 1rem;
+  --espacio-md: 2rem;
+  --espacio-lg: 4rem;
+  --espacio-xl: 6rem;
+
+  --radio-borde: 6px;
+  --ancho-contenido: 1120px;
 }
 
+/* -----------------------------------------------------------------------
+   3. ESTILOS BASE
+----------------------------------------------------------------------- */
+body {
+  font-family: var(--font-body);
+  line-height: 1.7;
+  color: var(--color-tinta);
+  background: var(--color-papel);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .logo {
+  font-family: var(--font-display);
+}
+
+a {
+  color: inherit;
+}
+
+/* Foco visible para navegación por teclado — accesibilidad, no lo borres */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-cobre);
+  outline-offset: 3px;
+}
+
+.contenedor {
+  max-width: var(--ancho-contenido);
+  margin: 0 auto;
+  padding: 0 var(--espacio-md);
+}
+
+.etiqueta {
+  /* "Eyebrow": pequeña etiqueta en mayúsculas antes de cada título de
+     sección. Usa Montserrat porque son elementos de sistema/orientación,
+     no contenido de lectura. */
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-cobre);
+  display: block;
+  margin-bottom: var(--espacio-xs);
+}
+
+section h2 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--color-tinta);
+  margin-bottom: var(--espacio-sm);
+  max-width: 40ch;
+}
+
+.intro-seccion {
+  max-width: 62ch;
+  color: var(--color-grafito);
+  margin-bottom: var(--espacio-lg);
+  font-size: 1.05rem;
+}
+
+section {
+  padding: var(--espacio-xl) 0;
+}
+
+/* -----------------------------------------------------------------------
+   4. HEADER / NAVEGACIÓN
+----------------------------------------------------------------------- */
 header {
-  background: #1e3a5f;
+  background: var(--color-tinta);
   color: white;
-  padding: 1rem 2rem;
+  padding: 1.1rem 0;
   position: sticky;
   top: 0;
+  z-index: 50;
+  /* Línea de acento cobre: un detalle pequeño que refuerza la marca en
+     cada scroll sin gritar. */
+  border-bottom: 2px solid var(--color-cobre);
 }
 
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1100px;
-  margin: auto;
 }
 
+/* EL LOGO / FIRMA DEL SITIO
+   Pediste explícitamente Montserrat en peso medio (500): está fijado aquí
+   con font-weight: 500 y no debe cambiarse a 600/700 o pierde el efecto
+   de "firma" que pediste. El letter-spacing amplio es lo que le da un aire
+   de sello/consultoría en vez de logo genérico. */
 .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: 500;
+  font-size: 1.35rem;
+  letter-spacing: 0.04em;
+  color: white;
+}
+.logo span {
+  color: var(--color-cobre);
 }
 
 nav ul {
@@ -40,68 +181,447 @@ nav ul {
 nav a {
   color: white;
   text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 500;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+nav a:hover {
+  border-bottom-color: var(--color-cobre);
 }
 
-.hero {
-  background: linear-gradient(135deg, #1e3a5f, #2d6a9f);
+/* Botón de menú móvil (checkbox-hack, sin JavaScript) */
+.menu-toggle { display: none; }
+.menu-toggle-label {
+  display: none;
+  cursor: pointer;
+  font-family: var(--font-display);
   color: white;
-  text-align: center;
-  padding: 5rem 2rem;
+  font-size: 1.5rem;
 }
+
+/* -----------------------------------------------------------------------
+   5. HERO + MATRIZ DE RIESGO (elemento firma del diseño)
+----------------------------------------------------------------------- */
+.hero {
+  background: linear-gradient(160deg, var(--color-tinta) 0%, var(--color-tinta-suave) 65%);
+  color: white;
+  padding: var(--espacio-xl) 0;
+  overflow: hidden;
+}
+
+.hero .contenedor {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--espacio-lg);
+  align-items: center;
+}
+
+.hero-texto .etiqueta { color: var(--color-cobre-suave); }
 
 .hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: clamp(2rem, 4vw, 2.9rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--espacio-sm);
 }
 
 .hero p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  color: #D9E1E7;
+  margin-bottom: var(--espacio-md);
+  max-width: 46ch;
+}
+
+.hero-cta {
+  display: flex;
+  gap: var(--espacio-sm);
+  flex-wrap: wrap;
 }
 
 .btn {
-  background: #f4a261;
-  color: white;
-  padding: 0.8rem 2rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
   text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
+  padding: 0.85rem 1.8rem;
+  border-radius: var(--radio-borde);
+  display: inline-block;
+  transition: transform 0.15s ease, background 0.2s ease;
 }
-
-section {
-  padding: 4rem 2rem;
-  max-width: 1100px;
-  margin: auto;
+.btn-primario {
+  background: var(--color-cobre);
+  color: white;
 }
+.btn-primario:hover { transform: translateY(-2px); background: #A6672E; }
 
-section h2 {
+.btn-secundario {
+  background: transparent;
+  color: white;
+  border: 1.5px solid rgba(255,255,255,0.4);
+}
+.btn-secundario:hover { border-color: var(--color-cobre-suave); }
+
+/* Contenedor de la matriz de riesgo SVG (assets/matriz-riesgo.svg) */
+.hero-grafico {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radio-borde);
+  padding: var(--espacio-sm);
+}
+.hero-grafico img { width: 100%; height: auto; display: block; }
+.hero-grafico-caption {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #B9C6CE;
   text-align: center;
-  margin-bottom: 2rem;
-  color: #1e3a5f;
+  margin-top: var(--espacio-xs);
 }
 
+/* Colores de las celdas de la matriz — ver assets/matriz-riesgo.svg.
+   data-nivel 1 (bajo) a 5 (crítico). Cambia estos 5 colores para
+   re-tematizar la matriz sin tocar el SVG. */
+.celda[data-nivel="1"] { fill: var(--color-salvia); opacity: 0.55; }
+.celda[data-nivel="2"] { fill: var(--color-salvia); opacity: 0.85; }
+.celda[data-nivel="3"] { fill: var(--color-cobre); opacity: 0.8; }
+.celda[data-nivel="4"] { fill: var(--color-cobre); }
+.celda[data-nivel="5"] { fill: var(--color-rojizo-alto); }
+.etiqueta-eje {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  fill: #7C8A93;
+}
+.marcador {
+  fill: white;
+  stroke: var(--color-tinta);
+  stroke-width: 2;
+}
+
+/* -----------------------------------------------------------------------
+   6. FRANJA DE INSIGNIAS ISO
+   Usa las normas como "sello de confianza" horizontal, justo después del
+   hero. Cada insignia es un SVG en assets/iso-XXXXX.svg (ver esa carpeta).
+----------------------------------------------------------------------- */
+.franja-iso {
+  background: var(--color-papel-alt);
+  padding: var(--espacio-md) 0;
+  border-top: 1px solid #DEDDD3;
+  border-bottom: 1px solid #DEDDD3;
+}
+.franja-iso .contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--espacio-md);
+}
+.franja-iso-intro {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-grafito);
+  max-width: 16ch;
+}
+.iso-badges {
+  display: flex;
+  gap: var(--espacio-md);
+  flex-wrap: wrap;
+}
+.iso-badge {
+  width: 58px;
+  height: 58px;
+  color: var(--color-tinta);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.iso-badge:hover { color: var(--color-cobre); transform: translateY(-3px); }
+.iso-badge img { width: 100%; height: 100%; }
+.iso-badge-item { text-align: center; }
+.iso-badge-nombre {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  color: var(--color-grafito);
+  margin-top: 6px;
+  max-width: 80px;
+}
+
+/* -----------------------------------------------------------------------
+   7a. SECCIÓN EXPERIENCIA SECTOR ENERGÉTICO
+----------------------------------------------------------------------- */
+.experiencia-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.4rem;
+}
+.experiencia-item {
+  background: white;
+  border: 1px solid #E4E3DA;
+  border-radius: var(--radio-borde);
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.experiencia-icono {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  color: var(--color-acero);
+}
+.experiencia-item h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: var(--color-tinta);
+}
+.experiencia-item p {
+  font-size: 0.92rem;
+  color: var(--color-grafito);
+}
+.experiencia-item.acento-esg { border-left: 3px solid var(--color-salvia); }
+
+/* -----------------------------------------------------------------------
+   7b. SECCIÓN CURSOS Y SERVICIOS ACTUALES
+----------------------------------------------------------------------- */
 .servicios-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  gap: 1.6rem;
 }
-
 .servicio {
-  background: #f8f9fa;
-  padding: 2rem;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  background: white;
+  padding: 1.8rem;
+  border-radius: var(--radio-borde);
+  box-shadow: 0 2px 14px rgba(11,36,54,0.05);
+  border-top: 3px solid var(--color-cobre);
+}
+.servicio h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--color-tinta);
+  margin-bottom: 0.6rem;
+}
+.servicio p { color: var(--color-grafito); font-size: 0.95rem; }
+.servicio-tag {
+  display: inline-block;
+  margin-top: 0.9rem;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-acero);
 }
 
-.servicio h3 {
-  color: #1e3a5f;
-  margin-bottom: 1rem;
+/* -----------------------------------------------------------------------
+   7c. CURSOS PLANEADOS — Línea de tiempo (roadmap)
+   Aquí SÍ tiene sentido numerar/fechar: es un orden real (próximos
+   trimestres), no una decoración.
+----------------------------------------------------------------------- */
+.roadmap { position: relative; padding-left: 2rem; }
+.roadmap::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: #DEDDD3;
+}
+.roadmap-item {
+  position: relative;
+  padding-bottom: 2.2rem;
+}
+.roadmap-item:last-child { padding-bottom: 0; }
+.roadmap-item::before {
+  content: "";
+  position: absolute;
+  left: -2rem;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-papel);
+  border: 3px solid var(--color-cobre);
+}
+.roadmap-fecha {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-cobre);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+.roadmap-item h3 {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--color-tinta);
+  margin-bottom: 0.3rem;
+}
+.roadmap-item p { color: var(--color-grafito); font-size: 0.92rem; max-width: 60ch; }
+.roadmap-estado {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  background: var(--color-papel-alt);
+  color: var(--color-grafito);
+}
+
+/* -----------------------------------------------------------------------
+   7d. SOBRE MÍ
+----------------------------------------------------------------------- */
+.sobre-mi { background: var(--color-papel-alt); }
+.sobre-mi .contenedor {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: var(--espacio-lg);
+  align-items: start;
+}
+.sobre-mi-cifras { display: grid; gap: 1.2rem; }
+.cifra {
+  background: white;
+  border-radius: var(--radio-borde);
+  padding: 1.2rem;
+  border-left: 3px solid var(--color-acero);
+}
+.cifra strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-tinta);
+}
+.cifra span { font-size: 0.85rem; color: var(--color-grafito); }
+
+/* -----------------------------------------------------------------------
+   8. CONTACTO Y FOOTER
+----------------------------------------------------------------------- */
+.contacto-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--espacio-lg);
+}
+.contacto-datos p {
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+}
+.contacto-datos strong {
+  font-family: var(--font-display);
+  font-weight: 600;
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-cobre);
+  margin-bottom: 0.15rem;
+}
+
+/* Formulario de contacto:
+   El <form> apunta a Formspree como ejemplo porque Cloudflare Pages es
+   estático (no procesa formularios por sí solo). Para activarlo:
+   1) crea una cuenta gratuita en https://formspree.io
+   2) reemplaza TU-ID-DE-FORMSPREE en el atributo action del <form> en
+      index.html por el ID que te den.
+   Si prefieres no usar un servicio externo, borra el <form> y deja solo
+   los datos de contacto de la izquierda. */
+.formulario input,
+.formulario textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 0.75rem;
+  border: 1px solid #D5D4C9;
+  border-radius: var(--radio-borde);
+  margin-bottom: 0.9rem;
+  background: white;
+}
+.formulario label {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-grafito);
+  display: block;
+  margin-bottom: 0.3rem;
 }
 
 footer {
-  background: #1e3a5f;
-  color: white;
+  background: var(--color-tinta);
+  color: #B9C6CE;
   text-align: center;
-  padding: 2rem;
+  padding: var(--espacio-md);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+}
+footer .logo { font-size: 1rem; margin-bottom: 0.5rem; }
+
+/* -----------------------------------------------------------------------
+   9. ANIMACIONES
+   Solo dos: entrada escalonada de la matriz de riesgo y aparición suave
+   de secciones al hacer scroll. Se respeta prefers-reduced-motion.
+----------------------------------------------------------------------- */
+@keyframes aparecer-celda {
+  from { opacity: 0; transform: scale(0.5); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.celda {
+  transform-origin: center;
+  animation: aparecer-celda 0.5s ease backwards;
+}
+/* Retraso escalonado por columna, para que la matriz se dibuje en cascada */
+.celda:nth-child(5n+1) { animation-delay: 0.05s; }
+.celda:nth-child(5n+2) { animation-delay: 0.1s; }
+.celda:nth-child(5n+3) { animation-delay: 0.15s; }
+.celda:nth-child(5n+4) { animation-delay: 0.2s; }
+.celda:nth-child(5n+5) { animation-delay: 0.25s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .celda { animation: none; }
+  .btn, .iso-badge { transition: none; }
+}
+
+/* -----------------------------------------------------------------------
+   10. RESPONSIVE — hasta aquí todo pensado "desktop-first" como el
+   original; estos breakpoints lo adaptan a tablet/móvil.
+----------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .hero .contenedor { grid-template-columns: 1fr; }
+  .hero-grafico { max-width: 340px; margin: 0 auto; }
+  .sobre-mi .contenedor { grid-template-columns: 1fr; }
+  .contacto-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  nav ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-tinta);
+    flex-direction: column;
+    padding: 1rem 2rem;
+    gap: 1rem;
+  }
+  .menu-toggle:checked ~ ul { display: flex; }
+  .menu-toggle-label { display: block; }
+  .franja-iso .contenedor { flex-direction: column; align-items: flex-start; }
 }

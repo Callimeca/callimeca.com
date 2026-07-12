@@ -1,0 +1,10 @@
+<!-- Insignia ISO 14001 — Gestión Ambiental. Círculo + número, sin relleno de color
+     fijo: hereda el color desde CSS (currentColor), así que basta cambiar
+     el color del contenedor .iso-badge en estilos.css para re-tematizar
+     todas las insignias a la vez. -->
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Norma ISO 14001, Gestión Ambiental">
+  <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="2.5"/>
+  <circle cx="50" cy="50" r="38" fill="none" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+  <text x="50" y="46" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="600" font-size="17" fill="currentColor">ISO</text>
+  <text x="50" y="66" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="700" font-size="18" fill="currentColor">14001</text>
+</svg>
