@@ -540,7 +540,7 @@ nav a:hover {
    2) reemplaza TU-ID-DE-FORMSPREE en el atributo action del <form> en
       index.html por el ID que te den.
    Si prefieres no usar un servicio externo, borra el <form> y deja solo
-   los datos de contacto de la izquierda. */
+   los datos de contacto de la izquierda. 
 .formulario input,
 .formulario textarea {
   width: 100%;
@@ -571,7 +571,7 @@ footer {
   font-family: var(--font-display);
   font-size: 0.8rem;
 }
-footer .logo { font-size: 1rem; margin-bottom: 0.5rem; }
+footer .logo { font-size: 1rem; margin-bottom: 0.5rem; }*/
 
 /* -----------------------------------------------------------------------
    9. ANIMACIONES
