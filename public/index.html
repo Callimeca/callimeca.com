@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
   ============================================================================
-  SITIO: OHMIA — Consultoría y formación en gestión de riesgos
+  SITIO: CALLIMECA — Consultoría y formación en gestión de riesgos
   ============================================================================
   Cómo está organizado (mismo orden que estilos.css, por sección numerada):
     4. Header / navegación
@@ -52,7 +52,12 @@
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#experiencia">Experiencia</a></li>
         <li><a href="#cursos">Cursos</a></li>
-         <!--<li><a href="#planeados">Cursos planeados</a></li> -->
+        <li><a href="#casos">Casos de éxito</a></li>
+        <!-- "Evidencia" no está en el menú a propósito: es un bloque de
+             apoyo entre Cursos y Casos, no un destino que alguien busque
+             directo desde la navegación. Si prefieres que sí aparezca,
+             agrega aquí <li><a href="#evidencia">Evidencia</a></li>. -->
+        <li><a href="#planeados">Cursos planeados</a></li>
         <li><a href="#sobre-mi">Sobre mí</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
@@ -92,7 +97,7 @@
           la ruta de la imagen, el alt y el nombre visible. -->
   <div class="franja-iso">
     <div class="contenedor">
-      <p class="franja-iso-intro">Auditorías y cursos alineados a</p>
+      <p class="franja-iso-intro">Cursos alineados a</p>
       <ul class="iso-badges" style="list-style:none; display:flex; gap:2rem; flex-wrap:wrap;">
         <li class="iso-badge-item">
           <span class="iso-badge"><img src="assets/iso-9001.svg" alt="ISO 9001"></span>
@@ -193,16 +198,37 @@
         exprés cuando el tiempo apremia.
       </p>
 
+      <span class="subseccion-titulo">Programa ERM — por nivel de audiencia</span>
       <div class="servicios-grid">
         <div class="servicio">
-          <h3>Programa ERM — Gestión Integral de Riesgo: Talleres por nivel: operativo, gerencial y ejecutivo</h3>
-          <p>Formato corto y diferenciado por audiencia.</h3>
-          <p>Opcióm: Programa de 11 módulos basado en COSO 2017, ISO 31000 con integración de
-             riesgo ESG, pensado para escalar de piso operativo a comité
-             ejecutivo.</p>
-          <span class="servicio-tag">Programa insignia</span>
+          <h3>Taller Operativo</h3>
+          <p>Identificación de riesgo en el día a día: cómo reconocer,
+             registrar y escalar un riesgo desde el piso de operación,
+             sin depender de un área central de riesgo.</p>
+          <span class="servicio-tag">Nivel operativo · 1 día</span>
+        </div>
+        
+        <div class="servicio">
+          <h3>Taller Gerencial</h3>
+          <p>Construcción y lectura de matrices de riesgo, priorización
+             por probabilidad e impacto, y diseño de planes de mitigación
+             para equipos de mando medio.</p>
+          <span class="servicio-tag">Nivel gerencial · 2 días</span>
         </div>
 
+        <div class="servicio">
+          <h3>Taller Ejecutivo</h3>
+          <p>Apetito de riesgo, gobierno corporativo del riesgo (COSO 2017)
+             y reporting hacia comité/directorio, incluyendo integración
+             de riesgo ESG.</p>
+          <span class="servicio-tag">Nivel ejecutivo · Medio día</span>
+        </div>
+      </div>
+
+      <!-- Subgrupo 2: el resto de la oferta, separada visualmente del
+           programa ERM para que no se lean como "lo mismo". -->
+      <span class="subseccion-titulo">Otros cursos y servicios</span>
+      <div class="servicios-grid">
         <div class="servicio">
           <h3>Curso NOM-017-STPS-2024</h3>
           <p>Equipo de protección personal: identificación de riesgo,
@@ -213,7 +239,7 @@
 
         <div class="servicio">
           <h3>Auditorías de riesgo bajo normas ISO</h3>
-          <p>Auditoría y preparación para ISO 9001, 14001, 45001, 27001,
+          <p>Preparación sección riesgos para ISO 9001, 14001, 45001, 27001,
              50001 y 55001, con enfoque en hallazgos accionables, no solo
              cumplimiento documental.</p>
           <span class="servicio-tag">Auditoría</span>
@@ -229,11 +255,156 @@
     </div>
   </section>
 
-  <!-- ==================== 7c. CURSOS PLANEADOS (ROADMAP) ====================
+  <!-- ==================== 7b-bis. EVIDENCIA DE MERCADO ====================
+       Pediste "estadísticas de ahorro al implementar una metodología de
+       riesgo, como borrador". Estas 4 cifras SÍ son reales y tienen fuente
+       (quedaron citadas abajo), a diferencia de los "casos de éxito" de la
+       siguiente sección que son ilustrativos. Aun así, trátalas como
+       borrador en el sentido de: son promedios de estudios internacionales,
+       no de tus clientes — verifícalas/actualízalas si vas a citarlas en
+       una propuesta formal, y no las presentes como "resultados de OHMIA". -->
+  <section id="evidencia">
+    <div class="contenedor">
+      <span class="etiqueta">Por qué esto importa</span>
+      <h2>Lo que muestra la evidencia sobre gestionar bien el riesgo</h2>
+      <p class="evidencia-aviso">
+        Cifras de estudios externos (no son resultados de OHMIA ni de un
+        cliente específico). Sirven para justificar la inversión en
+        gestión de riesgo frente a un comité o directorio.
+      </p>
+
+      <div class="evidencia-grid">
+        <div class="evidencia-card">
+          <span class="evidencia-numero">Hasta 25%</span>
+          <p>Mayor valoración de mercado en empresas con programas de
+             gestión de riesgo maduros, frente a las de menor madurez.</p>
+          <span class="evidencia-fuente">Fuente: RIMS / Journal of Risk and Insurance, 2014</span>
+        </div>
+
+        <div class="evidencia-card">
+          <span class="evidencia-numero">3×</span>
+          <p>Más crecimiento de EBITDA en el 20% de empresas con mayor
+             madurez de riesgo, frente al 20% con menor madurez.</p>
+          <span class="evidencia-fuente">Fuente: estudio EY, 576 empresas evaluadas</span>
+        </div>
+
+        <div class="evidencia-card">
+          <span class="evidencia-numero">USD 83.3M</span>
+          <p>Ahorro promedio en aseguradoras que adoptaron un comité de
+             riesgo formal y reporting a directorio como práctica ERM.</p>
+          <span class="evidencia-fuente">Fuente: Universidad de Wisconsin, estudio Leverty</span>
+        </div>
+
+        <div class="evidencia-card">
+          <span class="evidencia-numero">33%</span>
+          <p>De las organizaciones cuenta hoy con procesos de gestión de
+             riesgo completos — el resto sigue siendo la oportunidad.</p>
+          <span class="evidencia-fuente">Fuente: AICPA &amp; NC State University</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 7c. CASOS DE ÉXITO ====================
+       POR QUÉ AQUÍ: justo después de mostrar la oferta (7b) y antes del
+       roadmap (7d) — es el punto de mayor "prueba social" de la página,
+       cuando el visitante ya entendió qué ofreces y necesita confirmar
+       que funciona antes de seguir bajando.
+
+       IMPORTANTE — este bloque es un BORRADOR:
+       Los 3 casos y las 3 cifras de abajo son ilustrativos, redactados
+       para que veas el formato funcionando. Reemplaza:
+         1) El texto de cada <dd> por datos reales de tus proyectos.
+         2) Los <div class="foto-placeholder"> por tus fotos: borra el
+            div completo y pon <img src="assets/nombre-de-tu-foto.jpg"
+            alt="descripción de la foto"> en su lugar (agrega tus fotos
+            a la carpeta assets/).
+         3) Las cifras de .cifras-impacto: no están tomadas de ningún
+            estudio, son marcadores de posición — dejarlas así en un
+            sitio público sería engañoso. En cuanto tengas resultados
+            reales de un cliente (aunque sea de un solo caso), reemplaza
+            el número y el texto. -->
+  <section id="casos" style="background: var(--color-papel-alt);">
+    <div class="contenedor">
+      <span class="etiqueta">Prueba social</span>
+      <h2>Casos de éxito</h2>
+      <p class="intro-seccion">
+        Ejemplos representativos de cómo se traduce cada taller o auditoría
+        en un problema concreto resuelto. <em>(Borrador: reemplaza estos 3
+        casos por proyectos reales en cuanto los tengas documentados.)</em>
+      </p>
+
+      <div class="caso-grid">
+        <div class="caso">
+          <div class="caso-foto">
+            <div class="foto-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+              Espacio para foto del taller<br>(reemplázalo en index.html)
+            </div>
+          </div>
+          <div class="caso-cuerpo">
+            <span class="caso-etiqueta">Generación eléctrica</span>
+            <h3>Reducción de hallazgos repetidos en auditoría interna</h3>
+            <dl>
+              <dt>Reto</dt><dd>Los mismos hallazgos de riesgo operacional aparecían auditoría tras auditoría sin cerrarse.</dd>
+              <dt>Solución</dt><dd>Taller Gerencial + rediseño de la matriz de riesgo con dueños y fechas claras.</dd>
+              <dt>Resultado</dt><dd>[Reemplaza con tu resultado real, ej. "N hallazgos cerrados en el siguiente ciclo".]</dd>
+            </dl>
+          </div>
+        </div>
+
+        <div class="caso">
+          <div class="caso-foto">
+            <div class="foto-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+              Espacio para foto del taller<br>(reemplázalo en index.html)
+            </div>
+          </div>
+          <div class="caso-cuerpo">
+            <span class="caso-etiqueta">Distribución</span>
+            <h3>Preparación para auditoría ISO 45001</h3>
+            <dl>
+              <dt>Reto</dt><dd>Brecha entre la documentación de seguridad y la práctica real en campo.</dd>
+              <dt>Solución</dt><dd>Consultoría express con diagnóstico de brechas y plan de cierre por prioridad.</dd>
+              <dt>Resultado</dt><dd>[Reemplaza con tu resultado real, ej. "Certificación obtenida en X meses".]</dd>
+            </dl>
+          </div>
+        </div>
+
+        <div class="caso">
+          <div class="caso-foto">
+            <div class="foto-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+              Espacio para foto del taller<br>(reemplázalo en index.html)
+            </div>
+          </div>
+          <div class="caso-cuerpo">
+            <span class="caso-etiqueta">Gas natural</span>
+            <h3>Reporting de riesgo ESG a comité</h3>
+            <dl>
+              <dt>Reto</dt><dd>El comité no tenía una vista consolidada del riesgo ESG entre unidades de negocio.</dd>
+              <dt>Solución</dt><dd>Taller Ejecutivo + formato de reporting multi-GBU adaptado a su gobierno interno.</dd>
+              <dt>Resultado</dt><dd>[Reemplaza con tu resultado real, ej. "Primer reporte consolidado presentado a directorio".]</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cifras de impacto — VER LA NOTA GRANDE ARRIBA: son borrador. -->
+      <div class="cifras-impacto">
+        <div class="cifra-impacto"><strong>[X]%</strong><span>Menos hallazgos repetidos entre ciclos de auditoría</span></div>
+        <div class="cifra-impacto"><strong>[X]</strong><span>Semanas ahorradas en el diagnóstico vs. un proceso tradicional</span></div>
+        <div class="cifra-impacto"><strong>[X]%</strong><span>De brechas de control cerradas en el primer trimestre</span></div>
+        <p class="cifras-impacto-nota">Cifras de referencia — borrador, reemplazar con resultados reales</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 7d. CURSOS PLANEADOS (ROADMAP) ====================
        Esta es la única sección donde el orden numerado/cronológico tiene
        sentido real (son fechas), así que se usa una línea de tiempo.
        Para agregar un curso nuevo: copia un .roadmap-item completo. -->
-  <!--<section id="planeados">
+  <section id="planeados">
     <div class="contenedor">
       <span class="etiqueta">En desarrollo</span>
       <h2>Cursos planeados</h2>
@@ -278,7 +449,7 @@
       </div>
     </div>
   </section>
--->
+  
   <!-- ==================== 7d. SOBRE MÍ ==================== -->
   <section id="sobre-mi" class="sobre-mi">
     <div class="contenedor">

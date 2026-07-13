@@ -285,7 +285,7 @@ nav a:hover {
 
 /* Colores de las celdas de la matriz — ver assets/matriz-riesgo.svg.
    data-nivel 1 (bajo) a 5 (crítico). Cambia estos 5 colores para
-   re-tematizar la matriz sin tocar el SVG. */
+   re-tematizar la matriz sin tocar el SVG.
 .celda[data-nivel="1"] { fill: var(--color-salvia); opacity: 0.55; }
 .celda[data-nivel="2"] { fill: var(--color-salvia); opacity: 0.85; }
 .celda[data-nivel="3"] { fill: var(--color-cobre); opacity: 0.8; }
@@ -303,7 +303,7 @@ nav a:hover {
   stroke: var(--color-tinta);
   stroke-width: 2;
 }
-
+*/
 /* -----------------------------------------------------------------------
    6. FRANJA DE INSIGNIAS ISO
    Usa las normas como "sello de confianza" horizontal, justo después del
@@ -425,7 +425,186 @@ nav a:hover {
 }
 
 /* -----------------------------------------------------------------------
-   7c. CURSOS PLANEADOS — Línea de tiempo (roadmap)
+   7b-bis. EVIDENCIA DE MERCADO — por qué invertir en gestión de riesgo
+   Distinto de "Casos de éxito": aquí NO son resultados de OHMIA, son
+   cifras de estudios externos (RIMS, EY, etc.), citadas con fuente.
+   Por eso llevan su propio aviso de transparencia, separado del aviso
+   de "casos de éxito son borrador" que aparece más abajo.
+----------------------------------------------------------------------- */
+.evidencia-aviso {
+  font-size: 0.8rem;
+  color: var(--color-grafito);
+  background: white;
+  border-left: 3px solid var(--color-cobre);
+  padding: 0.7rem 1rem;
+  border-radius: 4px;
+  margin-bottom: var(--espacio-lg);
+  max-width: 66ch;
+}
+.evidencia-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.4rem;
+}
+.evidencia-card {
+  background: white;
+  border-radius: var(--radio-borde);
+  padding: 1.5rem;
+  box-shadow: 0 2px 14px rgba(11,36,54,0.05);
+  border-top: 3px solid var(--color-acero);
+}
+.evidencia-numero {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--color-tinta);
+  display: block;
+  line-height: 1;
+  margin-bottom: 0.6rem;
+}
+.evidencia-card p { font-size: 0.9rem; color: var(--color-grafito); }
+.evidencia-fuente {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  letter-spacing: 0.03em;
+  color: var(--color-acero);
+  margin-top: 0.7rem;
+}
+ 
+/* -----------------------------------------------------------------------
+   7c. CASOS DE ÉXITO
+   Por qué va aquí (entre "Cursos y servicios" y "Cursos planeados"):
+   en la secuencia de lectura, primero explicas QUÉ ofreces (sección 7b)
+   y justo después conviene la PRUEBA de que funciona, antes de que la
+   atención del visitante se mueva hacia el futuro (roadmap) o hacia ti
+   (sobre mí). Es el punto de mayor peso persuasivo de la página.
+----------------------------------------------------------------------- */
+.caso-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.6rem;
+  margin-bottom: var(--espacio-lg);
+}
+.caso {
+  background: white;
+  border-radius: var(--radio-borde);
+  overflow: hidden;
+  border: 1px solid #E4E3DA;
+  display: flex;
+  flex-direction: column;
+}
+ 
+/* FOTO DE CADA CASO — placeholder editable.
+   Para poner tu foto real: reemplaza el <img> dentro de .caso-foto en
+   index.html (borra el div.foto-placeholder y pon <img src="assets/tu-foto.jpg" alt="...">).
+   Mientras tanto, este bloque muestra un marcador con guía visual, no una
+   imagen genérica de stock. */
+.caso-foto {
+  aspect-ratio: 16 / 10;
+  background: var(--color-papel-alt);
+}
+.foto-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border: 1.5px dashed #C7C6BB;
+  color: var(--color-grafito);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  text-align: center;
+  padding: 1rem;
+}
+.foto-placeholder svg { width: 28px; height: 28px; opacity: 0.5; }
+ 
+.caso-cuerpo { padding: 1.6rem; }
+.caso-etiqueta {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-acero);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.caso h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-tinta);
+  margin-bottom: 0.6rem;
+}
+.caso dl { font-size: 0.9rem; color: var(--color-grafito); }
+.caso dt {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-tinta);
+  margin-top: 0.7rem;
+}
+.caso dd { margin-left: 0; }
+ 
+/* CIFRAS DE AHORRO / IMPACTO — ver la nota completa en index.html.
+   Son ilustrativas (borrador), marcadas visualmente con el badge
+   "Cifra de referencia" para que no se confundan con datos auditados. */
+.cifras-impacto {
+  background: var(--color-tinta);
+  color: white;
+  border-radius: var(--radio-borde);
+  padding: var(--espacio-md);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  text-align: center;
+}
+.cifra-impacto strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: var(--color-cobre-suave);
+}
+.cifra-impacto span {
+  font-size: 0.85rem;
+  color: #C9D3D9;
+  display: block;
+  margin-top: 0.3rem;
+}
+.cifras-impacto-nota {
+  grid-column: 1 / -1;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #91A2AC;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  padding-top: 0.8rem;
+  margin-top: 0.3rem;
+}
+ 
+/* Subtítulos DENTRO de la sección de cursos, para separar "talleres del
+   programa ERM" de "otros servicios" sin abrir una sección nueva. */
+.subseccion-titulo {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-tinta);
+  margin: var(--espacio-md) 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--color-cobre);
+  display: inline-block;
+}
+.subseccion-titulo:first-of-type { margin-top: 0; }
+
+/* -----------------------------------------------------------------------
+   7d. CURSOS PLANEADOS — Línea de tiempo (roadmap)
    Aquí SÍ tiene sentido numerar/fechar: es un orden real (próximos
    trimestres), no una decoración.
 ----------------------------------------------------------------------- */
@@ -486,7 +665,7 @@ nav a:hover {
 }
 
 /* -----------------------------------------------------------------------
-   7d. SOBRE MÍ
+   7e. SOBRE MÍ
 ----------------------------------------------------------------------- */
 .sobre-mi { background: var(--color-papel-alt); }
 .sobre-mi .contenedor {
@@ -575,28 +754,14 @@ footer .logo { font-size: 1rem; margin-bottom: 0.5rem; }*/
 
 /* -----------------------------------------------------------------------
    9. ANIMACIONES
-   Solo dos: entrada escalonada de la matriz de riesgo y aparición suave
-   de secciones al hacer scroll. Se respeta prefers-reduced-motion.
+   La animación de la matriz de riesgo vive dentro de
+   assets/matriz-riesgo.svg (es autónoma). Aquí solo queda la preferencia
+   de accesibilidad para el resto de transiciones de la página.
 ----------------------------------------------------------------------- */
-@keyframes aparecer-celda {
-  from { opacity: 0; transform: scale(0.5); }
-  to   { opacity: 1; transform: scale(1); }
-}
-.celda {
-  transform-origin: center;
-  animation: aparecer-celda 0.5s ease backwards;
-}
-/* Retraso escalonado por columna, para que la matriz se dibuje en cascada */
-.celda:nth-child(5n+1) { animation-delay: 0.05s; }
-.celda:nth-child(5n+2) { animation-delay: 0.1s; }
-.celda:nth-child(5n+3) { animation-delay: 0.15s; }
-.celda:nth-child(5n+4) { animation-delay: 0.2s; }
-.celda:nth-child(5n+5) { animation-delay: 0.25s; }
-
 @media (prefers-reduced-motion: reduce) {
-  .celda { animation: none; }
   .btn, .iso-badge { transition: none; }
 }
+ 
 
 /* -----------------------------------------------------------------------
    10. RESPONSIVE — hasta aquí todo pensado "desktop-first" como el
