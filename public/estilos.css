@@ -482,74 +482,86 @@ nav a:hover {
 ----------------------------------------------------------------------- */
 .caso-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.6rem;
-  margin-bottom: var(--espacio-lg);
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin: 2REM 0;
 }
-.caso {
-  background: white;
-  border-radius: var(--radio-borde);
+.caso-tarjeta {
+  background:#ffffff;
+  border-radius: 12px;
   overflow: hidden;
-  border: 1px solid #E4E3DA;
-  display: flex;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  border: 1px solid #eaeaea;
   flex-direction: column;
+  transition: transform 0.3s ease;
 }
- 
-/* FOTO DE CADA CASO — placeholder editable.
-   Para poner tu foto real: reemplaza el <img> dentro de .caso-foto en
-   index.html (borra el div.foto-placeholder y pon <img src="assets/tu-foto.jpg" alt="...">).
-   Mientras tanto, este bloque muestra un marcador con guía visual, no una
-   imagen genérica de stock. */
+
+.caso-tarjeta:hover{
+  transform: translateY(-4px);
+}
+
+
+/* Contenedor de la foto adaptado a la mitad / tamaño correcto */
 .caso-foto {
-  aspect-ratio: 16 / 10;
-  background: var(--color-papel-alt);
-}
-.foto-placeholder {
-  width: 100%;
-  height: 100%;
+  width:100%;
+  height: 220px; /* Altura controlada para que todas las fotos guarden armonía */
+  overflow: hidden;
+  background: #f4f5f7;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
-  border: 1.5px dashed #C7C6BB;
-  color: var(--color-grafito);
-  font-family: var(--font-display);
-  font-size: 0.72rem;
-  text-align: center;
-  padding: 1rem;
+  
 }
-.foto-placeholder svg { width: 28px; height: 28px; opacity: 0.5; }
- 
-.caso-cuerpo { padding: 1.6rem; }
+
+.img-caso {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Evita que la foto se deforme */
+}
+
+.caso-cuerpo {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex-grow: 1;
+}
+
 .caso-etiqueta {
-  font-family: var(--font-display);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-acero);
-  display: block;
-  margin-bottom: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #0056b3;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
-.caso h3 {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--color-tinta);
-  margin-bottom: 0.6rem;
+
+/* Estilo de la lista de Reto/Solución/Resultado */
+.caso-detalles {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
 }
-.caso dl { font-size: 0.9rem; color: var(--color-grafito); }
-.caso dt {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--color-tinta);
-  margin-top: 0.7rem;
+
+.detalle-item dt {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 0.95rem;
+    margin-bottom: 0.1rem;
 }
-.caso dd { margin-left: 0; }
+
+.detalle-item dd {
+    margin: 0;
+    color: #555555;
+    font-size: 0.95rem;
+    text-align: justify; /* Justificado perfecto como lo solicitaste antes */
+    line-height: 1.4;
+}
+
+.detalle-item.highlight dt {
+    color: #00875a; /* Destaca el resultado visualmente */
+}
  
 /* CIFRAS DE AHORRO / IMPACTO — ver la nota completa en index.html.
    Son ilustrativas (borrador), marcadas visualmente con el badge
